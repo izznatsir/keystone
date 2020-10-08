@@ -371,6 +371,7 @@ class PrismaListAdapter extends BaseListAdapter {
       count = Math.max(0, count); // Don't want to go negative from a skip!
       return { count };
     } else {
+      console.log(filter.where);
       return this.model.findMany(filter);
     }
   }
@@ -523,9 +524,7 @@ class PrismaFieldAdapter extends BaseFieldAdapter {
       [`${this.path}_not`]: value =>
         value === null
           ? { NOT: { [dbPath]: { equals: f(value) } } }
-          : {
-              OR: [{ NOT: { [dbPath]: { equals: f(value) } } }, { [dbPath]: { equals: null } }],
-            },
+          : { OR: [{ NOT: { [dbPath]: { equals: f(value) } } }, { [dbPath]: { equals: null } }] },
     };
   }
 
@@ -558,9 +557,7 @@ class PrismaFieldAdapter extends BaseFieldAdapter {
                 { NOT: { [dbPath]: null } },
               ],
             }
-          : {
-              OR: [{ NOT: { [dbPath]: { in: value.map(f) } } }, { [dbPath]: null }],
-            },
+          : { OR: [{ NOT: { [dbPath]: { in: value.map(f) } } }, { [dbPath]: null }] },
     };
   }
 
