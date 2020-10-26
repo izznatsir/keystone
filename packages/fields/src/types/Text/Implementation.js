@@ -21,11 +21,16 @@ export class Text extends Implementation {
     return { [`${this.path}`]: item => item[this.path] };
   }
   gqlQueryInputFields() {
+    const { listAdapter } = this.adapter;
     return [
       ...this.equalityInputFields('String'),
       ...this.stringInputFields('String'),
-      ...this.equalityInputFieldsInsensitive('String'),
-      ...this.stringInputFieldsInsensitive('String'),
+      ...(listAdapter.name === 'prisma' && listAdapter.provider === 'sqlite'
+        ? []
+        : [
+            ...this.equalityInputFieldsInsensitive('String'),
+            ...this.stringInputFieldsInsensitive('String'),
+          ]),
       ...this.inInputFields('String'),
     ];
   }

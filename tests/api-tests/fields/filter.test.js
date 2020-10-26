@@ -89,7 +89,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                 `Empty Filter`,
                 withKeystone(({ keystone }) => match(keystone, {}, [0, 1, 2, 3, 4, 5, 6]))
               );
-              if (mod.supportedFilters.includes('null_equality')) {
+              if (mod.supportedFilters(adapterName).includes('null_equality')) {
                 test(
                   'Equals null',
                   withKeystone(({ keystone }) =>
@@ -103,7 +103,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('equality')) {
+              if (mod.supportedFilters(adapterName).includes('equality')) {
                 test(
                   'Equals',
                   withKeystone(({ keystone }) =>
@@ -124,7 +124,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('equality_case_insensitive')) {
+              if (mod.supportedFilters(adapterName).includes('equality_case_insensitive')) {
                 test.only(
                   `Equals - Case Insensitive`,
                   withKeystone(({ keystone }) =>
@@ -144,7 +144,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('string')) {
+              if (mod.supportedFilters(adapterName).includes('string')) {
                 test.skip(
                   `Contains`,
                   withKeystone(({ keystone }) =>
@@ -182,7 +182,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (false && mod.supportedFilters.includes('string_case_insensitive')) {
+              if (mod.supportedFilters(adapterName).includes('string_case_insensitive')) {
                 test(
                   `Contains - Case Insensitive`,
                   withKeystone(({ keystone }) =>
@@ -225,7 +225,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('ordering')) {
+              if (mod.supportedFilters(adapterName).includes('ordering')) {
                 test(
                   'Less than',
                   withKeystone(({ keystone }) =>
@@ -251,7 +251,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('in_empty_null')) {
+              if (mod.supportedFilters(adapterName).includes('in_empty_null')) {
                 test(
                   'In - Empty List',
                   withKeystone(({ keystone }) => match(keystone, { [`${fieldName}_in`]: [] }, []))
@@ -278,7 +278,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('in_equal')) {
+              if (mod.supportedFilters(adapterName).includes('in_equal')) {
                 test(
                   'In - values',
                   withKeystone(({ keystone }) =>
@@ -313,7 +313,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                   )
                 );
               }
-              if (mod.supportedFilters.includes('is_set')) {
+              if (mod.supportedFilters(adapterName).includes('is_set')) {
                 test(
                   'Is Set - true',
                   withKeystone(({ keystone }) =>
