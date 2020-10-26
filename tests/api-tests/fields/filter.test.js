@@ -125,7 +125,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                 );
               }
               if (mod.supportedFilters(adapterName).includes('equality_case_insensitive')) {
-                test.only(
+                test(
                   `Equals - Case Insensitive`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_i`]: storedValues[3][fieldName] }, [2, 3, 4])
